@@ -12,7 +12,11 @@ Routes definition
 
         routes(){
             frontRouter.get( '/', (req, res) => {
-                res.render('index')
+                res.render('index', {title: 'Homepage'})
+            });
+
+            frontRouter.get( '/add-post', (req, res) => {
+                res.render('add-post', {title: 'Add post'})
             });
         }
 

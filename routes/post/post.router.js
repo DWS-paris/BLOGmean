@@ -14,7 +14,7 @@ Routes definition
         routes(){
             // CRUD: create
             myRouter.post('/', (req, res) => {
-                return res.json({ data: 'Create' })
+                return res.json({ data: req.body })
             })
 
             // CRUD: read
@@ -28,12 +28,12 @@ Routes definition
             })
 
             // CRUD: update
-            myRouter.put('/', (req, res) => {
+            myRouter.put('/:id', (req, res) => {
                 return res.json({ data: 'Update' })
             })
 
             // CRUD: delete
-            myRouter.delete('/', (req, res) => {
+            myRouter.delete('/:id', (req, res) => {
                 return res.json({ data: 'Delete' })
             })
         }
