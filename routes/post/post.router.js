@@ -55,18 +55,44 @@ Routes definition
                         })
                     })
                 }
-
-                return res.json({ data: req.body })
             })
 
             // CRUD: read
             myRouter.get('/', (req, res) => {
-                return res.json({ data: 'Read' })
+                readItem()
+                .then( apiResponse => {
+                    return res.status(200).json({
+                        message: 'Data sended',
+                        data: apiResponse,
+                        err: null
+                    })
+                })
+                .catch( apiResponse => {
+                    return res.status(400).json({
+                        message: 'Data not sended',
+                        data: null,
+                        err: apiResponse
+                    })
+                })
             })
 
             // CRUD: read on
             myRouter.get('/:id', (req, res) => {
-                return res.json({ data: 'Read one' })
+                readOneItem(req)
+                .then( apiResponse => {
+                    return res.status(200).json({
+                        message: 'Data sended',
+                        data: apiResponse,
+                        err: null
+                    })
+                })
+                .catch( apiResponse => {
+                    return res.status(400).json({
+                        message: 'Data not sended',
+                        data: null,
+                        err: apiResponse
+                    })
+                })
             })
 
             // CRUD: update
