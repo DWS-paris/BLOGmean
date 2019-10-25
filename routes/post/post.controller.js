@@ -30,13 +30,17 @@ Methods CRUD
 
     const updateItem = (req) => {
         return new Promise( (resolve, reject) => {
-            
+            Models.post.findByIdAndUpdate(req.params.id, req.body, (err, document) => {
+                err ? reject(err) : resolve(document);
+            })
         })
     }
 
     const deleteItem = (req) => {
         return new Promise( (resolve, reject) => {
-            
+            Models.post.deleteOne({ _id: req.params.id }, (err, document) => {
+                err ? reject(err) : resolve(document);
+            })
         })
     }
 //
