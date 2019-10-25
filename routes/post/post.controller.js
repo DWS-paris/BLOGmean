@@ -30,8 +30,30 @@ Methods CRUD
 
     const updateItem = (req) => {
         return new Promise( (resolve, reject) => {
+            /* Models.post.findById( req.params.id, ( err, document ) => {
+                if( err ){
+                    return reject(err)
+                }
+                else{
+                    document.save( req.body, (err, updated) => {
+                        err ? reject(err) : resolve(updated);
+                    })
+                }
+            }) */
+
+            /* Models.post.update( { _id: req.params.id }, req.body, (err, documents) => {
+                err ? reject(err) : resolve(documents);
+            }) */
+
             Models.post.findByIdAndUpdate(req.params.id, req.body, (err, document) => {
-                err ? reject(err) : resolve(document);
+                if( err ){
+                    return reject(err)
+                }
+                else{
+                    Models.post.findById( req.params.id, (err, updated) => {
+                        err ? reject(err) : resolve(updated);
+                    })
+                }
             })
         })
     }
