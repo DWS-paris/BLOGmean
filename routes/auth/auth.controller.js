@@ -48,9 +48,11 @@ Methods
         });
     };
 
-    const logout = (req) => {
+    const logout = (res) => {
         return new Promise( (resolve, reject) => {
-            
+            // Delete cookie
+            res.clearCookie('blog-mean');
+            return resolve('User logedout');
         });
     }
 //    

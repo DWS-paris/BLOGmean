@@ -25,10 +25,10 @@ Service definition
         
         // #JWT strategy
         passport.use(new JwtStrategy(opts, (jwtPayload, done) => {
-            Models.identity.findOne({ _id: jwtPayload._id }, (err, user) => {
+            Models.identity.findOne({ _id: jwtPayload._id }, (err, identity) => {
                 if (err) { return done(err, false)}
-                if (user) { 
-                    return done(null, user) 
+                if (identity) { 
+                    return done(null, identity) 
                 }
                 else { return done(null, false) }
             });

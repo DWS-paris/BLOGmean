@@ -16,9 +16,12 @@ Routes definition
 */
     class MyRouterClass {
 
+        // Inject passport in the class
+        constructor( { passport } ){ this.passport = passport }
+
         routes(){
             // CRUD: create
-            myRouter.post('/', (req, res) => {
+            myRouter.post('/', this.passport.authenticate('jwt', { session: false }), (req, res) => {
                 // Error: no body present
                 if (typeof req.body === 'undefined' || req.body === null) { 
                     return res.status(400).json({
@@ -96,7 +99,7 @@ Routes definition
             })
 
             // CRUD: update
-            myRouter.put('/:id', (req, res) => {
+            myRouter.put('/:id', this.passport.authenticate('jwt', { session: false }), (req, res) => {
                 // Error: no body present
                 if (typeof req.body === 'undefined' || req.body === null) { 
                     return res.status(400).json({
@@ -136,7 +139,7 @@ Routes definition
             })
 
             // CRUD: delete
-            myRouter.delete('/:id', (req, res) => {
+            myRouter.delete('/:id', this.passport.authenticate('jwt', { session: false }), (req, res) => {
                 deleteItem(req)
                 .then( apiResponse => {
                     return res.status(200).json({

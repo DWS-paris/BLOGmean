@@ -7,7 +7,7 @@ Methods CRUD
     const createItem = (req) => {
         return new Promise( (resolve, reject) => {
             Models.post.create(req.body)
-            .then( post => resolve(post) )
+            .then( post => resolve({post, identity: req.user}) )
             .catch( err => reject(err) );
         })
     }

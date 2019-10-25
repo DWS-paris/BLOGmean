@@ -102,7 +102,21 @@ Routes definition
 
             // GET 'api/auth/logout': send data to log user
             myRouter.get( '/logout', (req, res) => {
-                return res.json({ message: 'Logout user' })
+                logout(res)
+                .then( apiResponse => {
+                    return res.status(201).json({
+                        message: 'Indentity found',
+                        data: apiResponse,
+                        err: null
+                    })
+                })
+                .catch( apiResponse => {
+                    return res.status(400).json({
+                        message: 'Identity not found',
+                        data: null,
+                        err: apiResponse
+                    })
+                })
             });
         };
 

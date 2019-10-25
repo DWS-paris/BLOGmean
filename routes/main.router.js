@@ -25,7 +25,7 @@ Define routers
 
     // Child
     const frontRouter = new FrontRouterClass();
-    const postRouter = new PostRouterClass();
+    const postRouter = new PostRouterClass( { passport } );
     const authRouter = new AuthRouterClass();
 //
 
