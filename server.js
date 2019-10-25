@@ -7,6 +7,7 @@ Imports
     const bodyParser = require('body-parser');
     const path = require('path');
     const ejs = require('ejs');
+    const cookieParser = require('cookie-parser');
 
     // Inner
     const mongoDB = require('./services/db.service');
@@ -34,6 +35,9 @@ Server configuration
             //=> Use BodyParser to get user body data
             server.use(bodyParser.json({limit: '10mb'}));
             server.use(bodyParser.urlencoded({ extended: true }));
+
+            //=> Use CookieParser to setup serverside cookies
+            server.use(cookieParser(process.env.COOKIE_SECRET));
 
             //=> Set server main router
             server.use('/', mainRouter);

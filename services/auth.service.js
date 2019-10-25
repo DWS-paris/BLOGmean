@@ -11,7 +11,7 @@ Service definition
     // Extract token from cookie
     const cookieExtractor = (req) => {
         let token = null;
-        if (req && req.cookies) token = req.cookies[process.env.COOKIE_NAME];
+        if (req && req.cookies) token = req.cookies['blog-mean'];
         return token;
     };
 

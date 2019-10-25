@@ -2,7 +2,8 @@
 Definition
 */
     const Mandatories = {
-       post: ['headline', 'articleBody']
+       post: ['headline', 'articleBody'],
+       identity: ['email', 'password']
     };
 //
 

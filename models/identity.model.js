@@ -9,7 +9,7 @@ Import
 /*
 Definition
 */
-    const identitySchema = new Schema({
+    const MySchema = new Schema({
         email: { unique: true, type: String },
         password: String,
     });
@@ -18,13 +18,13 @@ Definition
 /*
 Methode
 */
-    identitySchema.methods.generateJwt = (user) => {
+    MySchema.methods.generateJwt = (identity) => {
         // set expiration
         const expiry = new Date();
         expiry.setDate(expiry.getDate() + 59);
 
         const jwtObj = {
-            _id: user._id,
+            _id: identity._id,
             expireIn: '10s',
             exp: parseInt(expiry.getTime() / 100, 10)
         };
@@ -37,6 +37,5 @@ Methode
 /*
 Export
 */
-    const IdentityModel = mongoose.model('identity', identitySchema);
-    module.exports = IdentityModel;
+    module.exports = mongoose.model('identity', MySchema);
 //
